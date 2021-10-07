@@ -17,9 +17,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/cache@v1
-        with:
-          path: ~/.cache/pip
       - name: Install Dependencies
         run: python3 -m pip install -U pip coverage
       - name: Run Tests
@@ -35,9 +32,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/cache@v1
-        with:
-          path: ~/.cache/pip
       - name: Install Dependencies
         run: python3 -m pip install -U pip black
       - name: Check code with black
