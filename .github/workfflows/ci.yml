@@ -1,0 +1,44 @@
+name: Unittests
+
+on:
+  pull_request:
+  push:
+    branches: main
+
+jobs:
+  test:
+    name: test w/ Python ${{ matrix.python-version }}
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9"]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/pip
+      - name: Install Dependencies
+        run: python3 -m pip install -U pip coverage
+      - name: Run Tests
+        run: python -m unittest test_add_number
+      - uses: codecov/codecov-action@v1
+        if: always()
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.xml
+
+  black-formatting:
+    name: code autoformatting with black
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/pip
+      - name: Install Dependencies
+        run: python3 -m pip install -U pip black
+      - name: Check code with black
+        run: black --check ./
