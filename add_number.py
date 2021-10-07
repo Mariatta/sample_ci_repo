@@ -9,4 +9,3 @@ def add_two_numbers(first, second):
     if not isinstance(first, (int, float)) or not (isinstance(second, (int, float))):
         raise ValueError("Inputs must be numbers.")
     return first + second
-
