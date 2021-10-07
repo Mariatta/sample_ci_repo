@@ -5,7 +5,7 @@ from add_number import add_two_numbers
 class TestAddNumbers(unittest.TestCase):
     def test_add_two_numbers(self):
         result = add_two_numbers(1, 2)
-        self.assertEqual(result, 3)
+        self.assertEqual(result, 12)
 
     def test_add_two_negative_numbers(self):
         result = add_two_numbers(-1, -2)
